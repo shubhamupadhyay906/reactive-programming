@@ -18,5 +18,7 @@ public interface BookService {
 
     public Flux<Book> search(String query);
 
+    public Flux<Book> searchName(String query);
+
 
 }

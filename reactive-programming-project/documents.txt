@@ -1,7 +1,31 @@
 //post
+//http://localhost:8081/books
 {
     "name": "Java Developer",
     "description": "Java Developer Book",
     "publisher": "Oracle publisher",
     "author": "James"
 }
+//get all books
+//http://localhost:8081/books
+
+//get book by id
+//http://localhost:8081/books/1
+
+//update by book id
+//http://localhost:8081/books/2
+{
+    "name": "Java Developer",
+    "description": "Java Developer Book",
+    "publisher": "Oracle publisher",
+    "author": "Raj"
+}
+
+//delete book by id
+//http://localhost:8081/books/2
+
+//search book by book name
+//http://localhost:8081/books/search/Java Developer
+
+//search book name using query
+//http://localhost:8081/books/search?query=Java

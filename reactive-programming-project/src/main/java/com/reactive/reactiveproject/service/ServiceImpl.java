@@ -30,7 +30,14 @@ public class ServiceImpl implements BookService {
 
     @Override
     public Mono<Book> update(Book book, int bookId) {
-        return null;
+        Mono<Book> oldBook = bookRepository.findById(bookId);
+        return oldBook.flatMap(book1 -> {
+            book1.setName(book.getName());
+            book1.setPublisher(book.getPublisher());
+            book1.setAuthor(book.getAuthor());
+            book1.setDescription(book.getDescription());
+            return bookRepository.save(book1);
+        });
     }
 
     @Override
@@ -40,6 +47,12 @@ public class ServiceImpl implements BookService {
 
     @Override
     public Flux<Book> search(String query) {
-        return null;
+        return bookRepository.findByName(query);
     }
+
+    @Override
+    public Flux<Book> searchName(String title) {
+        return bookRepository.getAllBooksByTitle("%" + title + "%");
+    }
+
 }
