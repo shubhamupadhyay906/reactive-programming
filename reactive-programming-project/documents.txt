@@ -1,0 +1,7 @@
+//post
+{
+    "name": "Java Developer",
+    "description": "Java Developer Book",
+    "publisher": "Oracle publisher",
+    "author": "James"
+}
