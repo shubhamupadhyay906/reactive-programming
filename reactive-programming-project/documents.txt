@@ -1,5 +1,5 @@
 //post
-//http://localhost:8081/books
+http://localhost:8081/books
 {
     "name": "Java Developer",
     "description": "Java Developer Book",
@@ -7,13 +7,13 @@
     "author": "James"
 }
 //get all books
-//http://localhost:8081/books
+http://localhost:8081/books
 
 //get book by id
-//http://localhost:8081/books/1
+http://localhost:8081/books/1
 
 //update by book id
-//http://localhost:8081/books/2
+http://localhost:8081/books/2
 {
     "name": "Java Developer",
     "description": "Java Developer Book",
@@ -22,10 +22,39 @@
 }
 
 //delete book by id
-//http://localhost:8081/books/2
+http://localhost:8081/books/2
 
 //search book by book name
-//http://localhost:8081/books/search/Java Developer
+http://localhost:8081/books/search/Java Developer
 
 //search book name using query
-//http://localhost:8081/books/search?query=Java
+http://localhost:8081/books/search?query=Java
+
+
+------------------------------------
+//post
+http://localhost:8081/router/add
+Req
+{
+    "name": "Oracle Developer",
+    "description": "Oracle Developer Book",
+    "publisher": "Oracle publisher",
+    "author": "Jone"
+}
+
+Res
+{
+    "bookId": 7,
+    "name": "Oracle Developer",
+    "description": "Oracle Developer Book",
+    "publisher": "Oracle publisher",
+    "author": "Jone"
+}
+
+// get all books
+http://localhost:8081/router/book
+
+// get single book
+http://localhost:8081/router/book/1
+
+

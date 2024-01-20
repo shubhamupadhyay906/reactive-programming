@@ -1,7 +1,9 @@
 package com.reactive.reactiveproject.controller;
 
 import com.reactive.reactiveproject.entity.Book;
+import com.reactive.reactiveproject.exception.BookException;
 import com.reactive.reactiveproject.service.BookService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,6 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/books")
 public class BookController {
-
-    private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
     private BookService bookService;
@@ -31,7 +31,8 @@ public class BookController {
 
     @GetMapping("/{bookId}")
     public Mono<Book> getById(@PathVariable int bookId) {
-        return bookService.getBookById(bookId);
+        return bookService.getBookById(bookId)
+                .switchIfEmpty(Mono.error(new BookException(StringUtils.join("not found ", bookId))));
     }
 
 

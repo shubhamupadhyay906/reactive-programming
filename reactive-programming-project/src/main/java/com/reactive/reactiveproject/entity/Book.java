@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Table("book_details")
 public class Book {
-
     @Id
     @Column("book_id")
     private int bookId;
@@ -66,6 +65,4 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
-
-
 }

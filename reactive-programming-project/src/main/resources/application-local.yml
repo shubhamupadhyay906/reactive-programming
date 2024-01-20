@@ -1,0 +1,48 @@
+#server:
+#  port: 8080
+#
+#spring:
+#  application:
+#    name: reactive-book-service
+#    version: 0.0.1-SNAPSHOT
+#  profiles:
+#    active: logs-stdout-json-gke
+#    group:
+#      local: logs-stdout
+#      test: logs-stdout
+#
+#
+#---
+#profile: local
+#
+#spring:
+#  profiles: local
+#
+#server:
+#  port: 8081
+#
+#management:
+#  server:
+#    port: 8091
+#
+#destination:
+#  endpoints:
+#    #RATE: localhost:8101
+#    RATE: rate-info-service:8080
+#    #HOTEL_RATING: localhost:8101
+#    HOTEL-RATING: hotel-rating-info-service:8080
+#
+#resilience:
+#  circuitebreaker:
+#    instances:
+#      rateInfoCB:
+#        registeredHealthIndicator: true
+#        minimumNumberOfCalls: 5
+#        ringBufferSizeInClosedState: 4
+#        waitDurationInOpenState: 11s
+#        failureRateThreshold: 50
+#        eventConsumerBufferSize: 10
+#        permittedNumberOfCallsInHalfOpenState: 3
+#        automaticTransitionFromOpenToHalfOpenEnabled: true
+#        slidingWindowSize: 10
+#        slidingWindowType: COUNT_BASED
