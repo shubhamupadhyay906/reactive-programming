@@ -4,6 +4,8 @@ import com.reactive.reactiveproject.entity.Book;
 import com.reactive.reactiveproject.exception.BookException;
 import com.reactive.reactiveproject.service.BookService;
 import com.reactive.reactiveproject.utils.ProductUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -17,7 +19,7 @@ import static java.lang.Integer.parseInt;
 
 @Service
 public class BookHandler {
-
+    private static final Logger logger = LoggerFactory.getLogger(BookHandler.class);
     @Autowired
     private final BookService bookService;
 
@@ -47,7 +49,9 @@ public class BookHandler {
 
     public Mono<ServerResponse> deleteBookById(ServerRequest serverRequest) {
         int bookId = parseInt(serverRequest.pathVariable("bookId"));
-        Mono<Void> book = bookService.delete(bookId);
+        Mono<Void> book = bookService.delete(bookId)
+                .switchIfEmpty(Mono.error(new BookException("Deleted id not found")));
+        logger.info("delete of book by : {}", book);
         return ServerResponse.ok().body(book, Book.class);
     }
 }
